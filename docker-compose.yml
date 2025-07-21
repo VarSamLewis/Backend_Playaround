@@ -1,0 +1,40 @@
+version: '3.9'
+services:
+  node-api:
+    build: ./node-api
+    ports:
+      - "3000:3000"
+    depends_on:
+      - redis
+      - postgres
+    environment:
+      - REDIS_HOST=redis
+      - PG_HOST=postgres
+
+  go-worker:
+    build: ./go-worker
+    depends_on:
+      - redis
+      - postgres      
+    environment:
+      - REDIS_HOST=redis
+      - POSTGRES_HOST=postgres
+
+  redis:
+    image: redis:latest
+    ports:
+      - "6379:6379"
+
+  postgres:
+    image: postgres:15
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: backenddb
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+volumes:
+  pgdata:

@@ -1,0 +1,52 @@
+openapi: 3.0.0
+info:
+  title: Payments API
+  version: 1.0.0
+paths:
+  /api/customers/{id}/payments:
+    get:
+      summary: Get payment records for a specific customer
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Customer ID
+        - name: min_amount
+          in: query
+          required: false
+          schema:
+            type: integer
+          description: Minimum payment amount
+        - name: created_after
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date
+          description: Filter payments after this date
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  customer:
+                    type: string
+                  payments:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        key:
+                          type: string
+                        amount:
+                          type: integer
+                        created_at:
+                          type: string
+                          format: date-time
+        '500':
+          description: Internal server error
