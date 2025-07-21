@@ -1,6 +1,6 @@
 ﻿# Backend_Playaround
 
-This is my first attempt at building a backend of an app, it's supposed to mimic a website. I decided t od everything in Docker so that I could play around with Node.js and Go without installations. That was a mistake. Debugging was an experience I never want to repeat. 
+This is my first attempt at building a backend of an app, it's supposed to mimic a payment system from Stripe. I decided to do everything in Docker so that I could play around with Node.js and Go without installations. That was a mistake. Debugging was an experience I never want to repeat. 
 
 ---
 
